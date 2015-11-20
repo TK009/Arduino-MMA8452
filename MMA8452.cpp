@@ -433,9 +433,9 @@ void MMA8452::standby(bool standby)
 
 uint8_t MMA8452::read(uint8_t reg)
 {
-	uint8_t *buf = 0;
-	readMultiple(reg, buf, 1);
-	return *buf;
+	uint8_t buf = 0;
+	readMultiple(reg, &buf, 1);
+	return buf;
 }
 
 void MMA8452::write(uint8_t reg, uint8_t value)
@@ -473,7 +473,7 @@ void MMA8452::readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numBytes)
 	while (Wire.available() < numBytes) {};
 	while (numBytes--)
 	{
-		*buffer++ = Wire.read();
+            *buffer++ = Wire.read();
 	}
 #else
 	i2c_start_wait((MMA8452_ADDRESS << 1));

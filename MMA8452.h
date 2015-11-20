@@ -14,7 +14,9 @@
 #include "MMA8452Reg.h"
 
 // I2C address set in hardware (tied high or low)
+#ifndef SA0
 #define SA0 0
+#endif
 #if SA0
 #define MMA8452_ADDRESS 0x1D
 #else
